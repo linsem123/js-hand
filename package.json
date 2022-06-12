@@ -1,0 +1,22 @@
+{
+  "name": "js-hand",
+  "version": "1.0.0",
+  "description": "This Repo aims to introduce and share the light JS lang hand writing about awesome JS features. And TS may be involved in some cases.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linsem123/js-hand.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linsem123/js-hand/issues"
+  },
+  "homepage": "https://github.com/linsem123/js-hand#readme"
+}
