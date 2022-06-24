@@ -11,8 +11,10 @@
   <script>
     let p = new Promise((resolve, reject) => {
       // reject('Good luck');
-      resolve('Good luck');
       // throw 'error';
+      setTimeout(() => {
+        resolve('Good luck');
+      }, 1000)
     });
 
     p.then(res => {
