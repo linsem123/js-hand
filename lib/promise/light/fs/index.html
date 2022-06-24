@@ -10,8 +10,9 @@
 <body>
   <script>
     let p = new Promise((resolve, reject) => {
-      // resolve('Good luck');
-      throw 'error'
+      // reject('Good luck');
+      resolve('Good luck');
+      // throw 'error';
     });
 
     p.then(res => {
