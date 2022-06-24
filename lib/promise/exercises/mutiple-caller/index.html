@@ -21,8 +21,11 @@
       })
     }).then(res => {
       console.log(res);
+      return new Promise(); // Pending Promsie will block the then caller 
     }).then(res => {
       console.log(res + ' last then caller')
+    }).catch(err => {
+      console.warn(err);
     });
 
     /***
