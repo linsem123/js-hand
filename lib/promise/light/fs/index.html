@@ -12,24 +12,24 @@
     let p = new Promise((resolve, reject) => {
       // reject('Good luck');
       // throw 'error';
-      setTimeout(() => {
-        resolve('Good luck');
-      }, 1000)
+      resolve('Good luck');
+
+      // setTimeout(() => {
+      //   resolve('Good luck');
+      // }, 1000)
     });
 
-    p.then(res => {
-      console.log('then: ', res);
+    const then = p.then(res => {
+      // console.log('then: ', res);
+      // return 'hello promise'
+      // return new Promise((resolve, reject) => {
+      //   resolve('hello promise');
+      // })
+      throw 'error'
     }, err => {
       console.warn('then error: ', err);
     });
-
-    p.then(res => {
-      console.log('then 2: ', res);
-    }, err => {
-      console.warn('then error 2: ', err);
-    });
-
-    console.log(p);
+    console.log(then);
   </script>
 </body>
 </html>
