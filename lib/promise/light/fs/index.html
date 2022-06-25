@@ -23,6 +23,12 @@
       console.warn('then error: ', err);
     });
 
+    p.then(res => {
+      console.log('then 2: ', res);
+    }, err => {
+      console.warn('then error 2: ', err);
+    });
+
     console.log(p);
   </script>
 </body>
