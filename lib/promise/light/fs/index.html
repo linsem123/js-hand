@@ -10,14 +10,13 @@
 <body>
   <script>
     let p = new Promise((resolve, reject) => {
-      // reject('Good luck');
+      reject('error');
       // throw 'error';
       // resolve('Good luck');
 
-      setTimeout(() => {
-        // resolve('Good luck');
-        reject('error');
-      }, 1000)
+      // setTimeout(() => {
+      //   reject('error');
+      // }, 1000)
     });
 
     const then = p.then(res => {
@@ -28,8 +27,8 @@
       // })
       // throw 'error'
     }, err => {
-      // console.warn('then error: ', err);
-      throw 'error'
+      console.warn('then error: ', err);
+      // throw 'error'
     });
     console.log(then);
   </script>
