@@ -9,31 +9,17 @@
   </head>
   <body>
     <script>
-      let p = new Promise((resolve, reject) => {
-        // reject('error');
-        // throw 'error';
+      // const p = Promise.resolve('Good luck');
+      const p = Promise.resolve(new Promise((resolve, reject) => {
         // resolve('Good luck');
-
+        // reject('unkonw error');
         setTimeout(() => {
           resolve('Good luck');
-          // reject("error form ");
         }, 1000);
-      });
+      }));
 
-      const pCatch = p
-        .then((res) => {
-          console.log(1);
-        })
-        .then((res) => {
-          console.log(2);
-        })
-        .then((res) => {
-          console.log(3);
-        })
-        .catch((err) => {
-          console.warn(err);
-        });
-      console.log(pCatch);
+      const p2 = Promise.resolve(Promise.resolve('Promise Resolve'))
+      console.log(p2);
     </script>
   </body>
 </html>
