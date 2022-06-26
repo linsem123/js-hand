@@ -13,17 +13,19 @@
       const tip2 = "Hi Promise";
       const tip3 = "Coding for fun";
       const err = "unknown error";
-      const p1 = new Promise((resolve, reject) => {
+      const p = new Promise((resolve, reject) => {
+        console.log(1);
         resolve(tip);
         // setTimeout(() => {
         //   resolve(tip);
         // }, 1000);
       });
 
-      const p2 = Promise.resolve(tip2);
-      const p3 = Promise.resolve(tip3);
-      const all = Promise.race([p1, p2, p3]);
-      console.log(all);
+      p.then(res => {
+        console.log(2);
+      });
+
+      console.log(3);
     </script>
   </body>
 </html>
