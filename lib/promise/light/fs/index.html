@@ -15,14 +15,14 @@
       const err = "unknown error";
       const p1 = new Promise((resolve, reject) => {
         resolve(tip);
-        setTimeout(() => {
-          resolve(tip);
-        }, 1000);
+        // setTimeout(() => {
+        //   resolve(tip);
+        // }, 1000);
       });
 
       const p2 = Promise.resolve(tip2);
       const p3 = Promise.resolve(tip3);
-      const all = Promise.all([p1, p2, p3]);
+      const all = Promise.race([p1, p2, p3]);
       console.log(all);
     </script>
   </body>
