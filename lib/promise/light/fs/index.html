@@ -9,16 +9,10 @@
   </head>
   <body>
     <script>
-      // const p = Promise.resolve('Good luck');
-      const p = Promise.resolve(new Promise((resolve, reject) => {
-        // resolve('Good luck');
-        // reject('unkonw error');
-        setTimeout(() => {
-          resolve('Good luck');
-        }, 1000);
+      const p = Promise.reject('unknown error');
+      const p2 = Promise.reject(new Promise((resolve, reject) => {
+        resolve('unknown error');
       }));
-
-      const p2 = Promise.resolve(Promise.resolve('Promise Resolve'))
       console.log(p2);
     </script>
   </body>
