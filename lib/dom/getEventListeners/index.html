@@ -8,6 +8,7 @@
     <script src="./lib/index.js"></script>
   </head>
   <body>
+    <div id="box"></div>
     <script>
       /**
        * addEventListener: https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener
@@ -21,8 +22,14 @@
       document.body.addEventListener("click", () => {}, {});
       document.body.addEventListener("click", () => {}, {});
       document.body.addEventListener("click", () => {}, {});
+      document.getElementById('box').addEventListener('click', () => {}, {});
+
+      document.addEventListener('click', () => {}, {});
+
+      console.log(document.getEventListeners('click'))
 
       console.log(document.body.getEventListeners("click"));
+      console.log(document.getElementById('box').getEventListeners("click"))
     </script>
   </body>
 </html>
