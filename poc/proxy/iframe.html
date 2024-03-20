@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .sky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      pointer-events: none;
+      background: #000046;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+    .star {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      var stars = document.getElementsByClassName('star');
+      for (var i = 0; i < stars.length; i++) {
+        var size = Math.random() * 5; // Change this value to adjust the maximum size
+        stars[i].style.width = size + 'px';
+        stars[i].style.height = size + 'px';
+        stars[i].style.top = Math.random() * 100 + '%';
+        stars[i].style.left = Math.random() * 100 + '%';
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- draw some stars in this page -->
+  <div class="sky">
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+  </div>
+</body>
+</html>
