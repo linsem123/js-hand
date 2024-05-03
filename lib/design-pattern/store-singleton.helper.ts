@@ -20,4 +20,12 @@ class StorageSingleton<T> {
     public getItem(key: string): T | undefined {
         return this.storage.get(key);
     }
+
+    public removeItem(key: string): void {
+        this.storage.delete(key);
+    }
+
+    public clear(): void {
+        this.storage.clear();
+    }
 }
