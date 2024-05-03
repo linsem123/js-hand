@@ -21,6 +21,18 @@ class StorageSingleton<T> {
         return this.storage.get(key);
     }
 
+    public getSafeItem(key: string, value?: T): T {
+        const item = this.storage.get(key);
+        if (item) {
+            return item;
+        }
+        if (value) {
+            this.setItem(key, value);
+            return value;
+        }
+        return null as any;
+    }
+
     public removeItem(key: string): void {
         this.storage.delete(key);
     }
