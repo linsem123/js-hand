@@ -1,70 +1,69 @@
-import { Injectable } from "@angular/core";
-import { Router, NavigationStart } from "@angular/router";
-import { LocationStrategy, PopStateEvent } from "@angular/common";
+import { Injectable } from '@angular/core';
+import { Router, NavigationStart, Event } from '@angular/router';
+import { LocationStrategy } from '@angular/common';
 
 @Injectable({
-    providedIn: "root",
+  providedIn: 'root',
 })
 export class HistoryManagerService {
-    private history: string[] = [];
-    private historyIndex: number = -1;
-    private navigationDirection: "forward" | "back" | "none" = "none";
+  private history: string[] = [];
+  private historyIndex: number = -1;
+  private navigationDirection: 'forward' | 'back' | 'none' = 'none';
 
-    constructor(
-        private router: Router,
-        private locationStrategy: LocationStrategy
-    ) {
-        // Subscribe to router events
-        this.router.events.subscribe((event) => {
-            if (event instanceof NavigationStart) {
-                this.updateHistory(event.url);
-            }
-        });
+  constructor(
+    private router: Router,
+    private locationStrategy: LocationStrategy
+  ) {
+    // Subscribe to router events
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        this.updateHistory(window.location.href);
+      }
+    });
 
-        // Detect browser back/forward button clicks using LocationStrategy
-        this.locationStrategy.onPopState((event: PopStateEvent) => {
-            this.detectDirection();
-        });
+    // Detect browser back/forward button clicks using LocationStrategy
+    this.locationStrategy.onPopState(() => {
+      this.detectDirection();
+    });
+  }
+
+  private updateHistory(url: string) {
+    if (this.historyIndex === -1 || this.history[this.historyIndex] !== url) {
+      this.history = this.history.slice(0, this.historyIndex + 1);
+      this.history.push(url);
+      this.historyIndex++;
+      this.navigationDirection = 'forward';
+    }
+  }
+
+  private detectDirection() {
+    const currentUrl = window.location.href;
+    let index = -1;
+    for (let i = this.history.length - 1; i >= 0; i--) {
+      if (this.history[i] === currentUrl) {
+        index = i;
+        break;
+      }
     }
 
-    private updateHistory(url: string) {
-        if (this.historyIndex === -1 || this.history[this.historyIndex] !== url) {
-            this.history = this.history.slice(0, this.historyIndex + 1);
-            this.history.push(url);
-            this.historyIndex++;
-            this.navigationDirection = "forward";
-        }
+    if (index !== -1) {
+      if (index < this.historyIndex) {
+        this.navigationDirection = 'back';
+      } else if (index > this.historyIndex) {
+        this.navigationDirection = 'forward';
+      }
+      this.historyIndex = index;
+    } else {
+      this.navigationDirection = 'none';
+      this.updateHistory(currentUrl);
     }
+  }
 
-    private detectDirection() {
-        const currentUrl = this.router.url;
-        const index = this.history.indexOf(currentUrl);
+  public getNavigationDirection(): 'forward' | 'back' | 'none' {
+    return this.navigationDirection;
+  }
 
-        if (index !== -1) {
-            if (index < this.historyIndex) {
-                this.navigationDirection = "back";
-            } else if (index > this.historyIndex) {
-                this.navigationDirection = "forward";
-            }
-            this.historyIndex = index;
-        } else {
-            this.navigationDirection = "none";
-        }
-    }
-
-    public getNavigationDirection(): "forward" | "back" | "none" {
-        return this.navigationDirection;
-    }
-
-    public pushState(url: string, title: string = "", state: any = {}) {
-        this.history.push(url);
-        this.historyIndex = this.history.length - 1;
-        window.history.pushState(state, title, url);
-        this.navigationDirection = "forward";
-    }
-
-    public replaceState(url: string, title: string = "", state: any = {}) {
-        this.history[this.historyIndex] = url;
-        window.history.replaceState(state, title, url);
-    }
+  public isFirstHistoryRecord(): boolean {
+    return this.historyIndex === 0;
+  }
 }
