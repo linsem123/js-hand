@@ -6,8 +6,8 @@ import { LocationStrategy } from '@angular/common';
   providedIn: 'root',
 })
 export class HistoryManagerService {
-  private history: string[] = [];
-  private historyIndex: number = -1;
+  private backStack: string[] = [];
+  private forwardStack: string[] = [];
   private navigationDirection: 'forward' | 'back' | 'none' = 'none';
 
   constructor(
@@ -28,31 +28,21 @@ export class HistoryManagerService {
   }
 
   private updateHistory(url: string) {
-    if (this.historyIndex === -1 || this.history[this.historyIndex] !== url) {
-      this.history = this.history.slice(0, this.historyIndex + 1);
-      this.history.push(url);
-      this.historyIndex++;
-      this.navigationDirection = 'forward';
+    if (this.navigationDirection !== 'back') {
+      this.backStack.push(url);
+      this.forwardStack = []; // Clear forward stack when navigating not from 'back'
     }
+    this.navigationDirection = 'none'; // Reset navigation direction after updating history
   }
 
   private detectDirection() {
     const currentUrl = window.location.href;
-    let index = -1;
-    for (let i = this.history.length - 1; i >= 0; i--) {
-      if (this.history[i] === currentUrl) {
-        index = i;
-        break;
-      }
-    }
-
-    if (index !== -1) {
-      if (index < this.historyIndex) {
-        this.navigationDirection = 'back';
-      } else if (index > this.historyIndex) {
-        this.navigationDirection = 'forward';
-      }
-      this.historyIndex = index;
+    if (this.backStack.length > 1 && this.backStack[this.backStack.length - 2] === currentUrl) {
+      this.navigationDirection = 'back';
+      this.forwardStack.push(this.backStack.pop());
+    } else if (this.forwardStack.length > 0 && this.forwardStack[this.forwardStack.length - 1] === currentUrl) {
+      this.navigationDirection = 'forward';
+      this.backStack.push(this.forwardStack.pop());
     } else {
       this.navigationDirection = 'none';
       this.updateHistory(currentUrl);
@@ -64,6 +54,6 @@ export class HistoryManagerService {
   }
 
   public isFirstHistoryRecord(): boolean {
-    return this.historyIndex === 0;
+    return this.backStack.length === 1;
   }
 }
