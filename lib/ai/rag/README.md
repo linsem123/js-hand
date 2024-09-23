@@ -111,3 +111,5 @@ The industry is gradually embracing RAG models for tasks requiring a blend of re
 Legal research: Rapid synthesis of case law
 Medical diagnosis: Intelligent amalgamation of medical data for diagnostic support
 Customer support: Dynamic information retrieval for personalized assistance
+
+https://xiaohu.ai/p/10982
