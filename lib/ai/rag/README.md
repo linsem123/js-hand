@@ -88,3 +88,26 @@ This outline should help you create a comprehensive and engaging presentation fo
 [44] https://deepchecks.com/retrieval-augmented-generation-best-practices-and-use-cases/
 [45] https://medium.com/max-ai-ai-saas-platform/interesting-gen-ai-rag-use-cases-that-can-deliver-quick-impact-70fbb422b973
 [46] https://www.merge.dev/blog/rag-examples
+
+## 3. Next RAG
+
+https://convergetp.com/2024/08/07/graphrag-elevating-rag-with-next-gen-knowledge-graphs/
+https://medium.com/@researchgraph/rag-2-0-is-coming-9dd3a5b1986a
+https://www.glean.com/blog/rag-revolutionizing-ai-2024
+
+Research trends
+Researchers are focusing on improving the interface between retrieval and generation components in RAG models. This involves enhancing the models' capacity to selectively source and integrate relevant information from extensive databases. Investigations into more sophisticated retrieval mechanisms, such as bi-directional retrieval and the use of reinforcement learning to optimize query strategies, are underway.
+
+Reinforcement learning: Optimization of retrieval based on model feedback
+Bi-directional retrieval: Simultaneous forward and backward information look-up
+Technological advancements
+Technological innovation is pivotal to elevating RAG models. The integration of transformer architectures has enabled these models to process information in parallel, significantly improving efficiency. Furthermore, advancements in pre-training techniques are anticipated, which could lead to a new wave of models that require less data to reach a high level of performance.
+
+Transformer architectures: Parallel data processing for enhanced efficiency
+Pre-training techniques: Reduced reliance on extensive databases for effective model performance
+Industry adoption
+The industry is gradually embracing RAG models for tasks requiring a blend of retrieved information and generative capabilities. Fields such as legal research, medical diagnosis, and customer support are adopting RAG systems to improve decision-making and responsiveness.
+
+Legal research: Rapid synthesis of case law
+Medical diagnosis: Intelligent amalgamation of medical data for diagnostic support
+Customer support: Dynamic information retrieval for personalized assistance
