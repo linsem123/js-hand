@@ -91,6 +91,8 @@ This outline should help you create a comprehensive and engaging presentation fo
 
 ## 3. Next RAG
 
+GraphRAG: https://arxiv.org/pdf/2404.16130
+
 https://convergetp.com/2024/08/07/graphrag-elevating-rag-with-next-gen-knowledge-graphs/
 https://medium.com/@researchgraph/rag-2-0-is-coming-9dd3a5b1986a
 https://www.glean.com/blog/rag-revolutionizing-ai-2024
@@ -113,3 +115,11 @@ Medical diagnosis: Intelligent amalgamation of medical data for diagnostic suppo
 Customer support: Dynamic information retrieval for personalized assistance
 
 https://xiaohu.ai/p/10982
+
+RAG 的局限性
+连接信息点:
+
+连接信息点: 基线 RAG 在将分散的信息片段整合成综合见解时表现不佳。这意味着它在需要跨越多个数据源或文档来提供统一回答的情况下，可能会遇到困难。
+整体理解:
+
+整体理解: 当需要理解大数据集合或单个大型文档中的总结性语义概念时，基线 RAG 的表现较差。这是因为它的设计主要是为了处理具体的、直接的查询，而不是复杂的、抽象的概念。
