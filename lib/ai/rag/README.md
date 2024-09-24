@@ -123,3 +123,25 @@ RAG 的局限性
 整体理解:
 
 整体理解: 当需要理解大数据集合或单个大型文档中的总结性语义概念时，基线 RAG 的表现较差。这是因为它的设计主要是为了处理具体的、直接的查询，而不是复杂的、抽象的概念。
+
+GraphRAG Pro
+
+创建实体知识图：将文本中的关键信息结构化为图形索引，使得信息组织更具层次性和系统性。
+模块化社区检测：使用社区检测算法将图形索引划分为若干模块化社区，从而能够并行处理和总结相关信息。
+多阶段摘要生成：通过多个阶段的摘要生成和整合，确保回答的全面性和多样性。
+复杂信息处理：改善了 LLM 在处理复杂信息时的问答性能，尤其是在需要跨越多个信息片段进行综合分析时。
+大数据集的整体理解：提高了对大数据集或单一大型文档的整体理解能力。
+私有数据集的利用：增强了 LLM 在处理未见过的私有数据集（如企业专有研究、商业文件或通信）时的推理能力。
+
+Creating Entity Knowledge Graphs:
+Structuring key information from text into graphical indexes, making information organization more hierarchical and systematic.
+Modular Community Detection:
+Using community detection algorithms to divide graphical indexes into several modular communities, enabling parallel processing and summarization of related information.
+Multi-Stage Summarization:
+Ensuring comprehensiveness and diversity of responses through multiple stages of summarization and integration.
+Complex Information Processing:
+Improving the question-answering performance of LLMs when handling complex information, especially when comprehensive analysis across multiple information fragments is required.
+Holistic Understanding of Large Datasets:
+Enhancing the ability to understand large datasets or single extensive documents as a whole.
+Utilization of Private Datasets:
+Enhancing the reasoning capabilities of LLMs when dealing with unseen private datasets, such as proprietary research, business documents, or communications.
