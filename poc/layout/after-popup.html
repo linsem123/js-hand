@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        position: relative;
+        background-color: red;
+        padding: 20px;
+        width: 300px;
+        height: 200px;
+        overflow: hidden; /* Ensure the shadow doesn't overflow */
+      }
+
+      .target {
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100px; /* Adjust the width of the target element */
+        background-color: lightblue;
+      }
+
+      .target::after {
+        position: absolute;
+        content: '';
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: -10000px;
+        z-index: -1;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .popup {
+        background-color: gold;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="target">
+        <div class="popup">Target</div>
+      </div>
+    </div>
+  </body>
+</html>
