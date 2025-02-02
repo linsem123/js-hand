@@ -1,0 +1,138 @@
+<!-- Prompts: "write a javascript code that shows a ball bouncing inside a spinning hexagon. The ball should be affected by gravity and friction, and it must bounce off the rotating walls realistically, implement it in javascript and html" -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bouncing Ball in Spinning Hexagon</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #000;
+      }
+      canvas {
+        border: 1px solid #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="600" height="600"></canvas>
+    <script>
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+
+      const width = canvas.width;
+      const height = canvas.height;
+      const centerX = width / 2;
+      const centerY = height / 2;
+
+      // Hexagon properties
+      const hexagonRadius = 200;
+      const hexagonRotationSpeed = 0.01; // radians per frame
+      let hexagonRotation = 0;
+
+      // Ball properties
+      const ballRadius = 15;
+      let ballX = centerX;
+      let ballY = centerY - hexagonRadius + ballRadius;
+      let ballVelocityX = 2;
+      let ballVelocityY = 0;
+      const gravity = 0.1;
+      const friction = 0.99;
+
+      // Function to draw the hexagon
+      function drawHexagon(rotation) {
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(rotation);
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const angle = (Math.PI / 3) * i;
+          const x = hexagonRadius * Math.cos(angle);
+          const y = hexagonRadius * Math.sin(angle);
+          if (i === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+        ctx.closePath();
+        ctx.strokeStyle = '#fff';
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // Function to draw the ball
+      function drawBall(x, y) {
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+        ctx.fillStyle = '#ff0';
+        ctx.fill();
+        ctx.closePath();
+      }
+
+      // Function to check collision with hexagon walls
+      function checkCollision() {
+        // Transform ball position to hexagon's local space
+        const dx = ballX - centerX;
+        const dy = ballY - centerY;
+        const rotatedX = dx * Math.cos(-hexagonRotation) - dy * Math.sin(-hexagonRotation);
+        const rotatedY = dx * Math.sin(-hexagonRotation) + dy * Math.cos(-hexagonRotation);
+
+        // Check distance from center
+        const distance = Math.sqrt(rotatedX ** 2 + rotatedY ** 2);
+        if (distance + ballRadius >= hexagonRadius) {
+          // Calculate normal vector at collision point
+          const normalAngle = Math.atan2(rotatedY, rotatedX);
+          const normalX = Math.cos(normalAngle);
+          const normalY = Math.sin(normalAngle);
+
+          // Reflect velocity vector
+          const dot = ballVelocityX * normalX + ballVelocityY * normalY;
+          ballVelocityX -= 2 * dot * normalX;
+          ballVelocityY -= 2 * dot * normalY;
+
+          // Apply friction and energy loss
+          ballVelocityX *= friction;
+          ballVelocityY *= friction;
+
+          // Reposition ball to avoid sticking
+          const overlap = distance + ballRadius - hexagonRadius;
+          ballX -= overlap * normalX * Math.cos(hexagonRotation) - overlap * normalY * Math.sin(hexagonRotation);
+          ballY -= overlap * normalX * Math.sin(hexagonRotation) + overlap * normalY * Math.cos(hexagonRotation);
+        }
+      }
+
+      // Main animation loop
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Update hexagon rotation
+        hexagonRotation += hexagonRotationSpeed;
+
+        // Draw hexagon
+        drawHexagon(hexagonRotation);
+
+        // Update ball position
+        ballVelocityY += gravity;
+        ballX += ballVelocityX;
+        ballY += ballVelocityY;
+
+        // Check for collisions
+        checkCollision();
+
+        // Draw ball
+        drawBall(ballX, ballY);
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+  </body>
+</html>
