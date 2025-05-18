@@ -49,7 +49,7 @@ function App() {
 1. **剑心通明**：用 Storybook 打造"武学秘籍"（设计-开发协作）
 2. **以气御剑**：CSS-in-JS 实现心法动态运转（主题切换）
 3. **万剑归宗**：Web Components 达成跨门派协作
-
+```mermaid
 %% 核心武学体系
 graph TD
     subgraph 内功心法[Design System]
@@ -74,6 +74,7 @@ graph TD
 
     style 内功心法 fill:#f9f2d9,stroke:#e8d174
     style 外家招式 fill:#e6f3ff,stroke:#7db8da
+```
 
 ## 第三章 当代武林风云录
 
