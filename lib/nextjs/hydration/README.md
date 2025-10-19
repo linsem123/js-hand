@@ -14,7 +14,15 @@ Basic Knowledge about Hydration:
 来源：稀土掘金
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
+## Mismatch Issue
+
+> 依赖于浏览器 API 的代码：在服务器上不可用的 API（如 window、document）
+依赖于时间的代码：如 new Date()、Math.random()
+条件渲染：基于客户端特定条件的渲染逻辑
+
 ## Issues
 
 1. https://juejin.cn/post/7205114671840428090
 2. https://juejin.cn/post/7520911407015247914
+3. More Sample |  https://juejin.cn/post/7493515804085911606?searchId=20251019193716E97E327202BA792A1CEB
+
